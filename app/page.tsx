@@ -1,65 +1,49 @@
-import Image from "next/image";
+import { MemoBoard } from "@/components/memo-board";
+import { StickyNote } from "lucide-react";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 font-sans selection:bg-yellow-200/50 relative">
+      {/* Theme Toggle Button */}
+      <div className="fixed top-8 right-8 z-50">
+        <ModeToggle />
+      </div>
+
+      {/* Header section with modern feel */}
+      <header className="relative w-full py-24 px-8 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full opacity-30 select-none pointer-events-none -z-10">
+          <div className="absolute top-1/4 -left-20 w-80 h-80 bg-yellow-200 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-yellow-300 rounded-full blur-3xl" />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="max-w-6xl mx-auto flex flex-col items-center gap-8 text-center relative z-10">
+          <div className="p-4 bg-yellow-400 rounded-3xl shadow-xl shadow-yellow-400/30 dark:shadow-yellow-900/10 rotate-3 transition-transform hover:rotate-0">
+            <StickyNote className="h-10 w-10 text-neutral-900" />
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <h1 className="text-5xl md:text-7xl font-black tracking-tight text-neutral-900 dark:text-neutral-100">
+              Yuko <span className="text-yellow-500">Post-it</span>
+            </h1>
+            <p className="max-w-xl text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium">
+              A minimalist way to organize your thoughts, one sticker at a time.
+            </p>
+          </div>
         </div>
+      </header>
+
+      {/* Main Board */}
+      <main className="pb-32">
+        <MemoBoard />
       </main>
+
+      {/* Footer */}
+      <footer className="w-full py-12 px-8 text-center border-t border-border/40 backdrop-blur-md bg-white/30 dark:bg-black/30">
+        <p className="text-neutral-500 dark:text-neutral-400 font-medium">
+          &copy; {new Date().getFullYear()} Yuko Post-it. All rights reserved.
+        </p>
+      </footer>
     </div>
   );
 }
